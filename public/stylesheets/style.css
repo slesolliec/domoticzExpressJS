@@ -1,0 +1,39 @@
+body {
+  padding: 5px;
+  background: #333;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+h1, p {
+  display: none; }
+
+div.card {
+  margin: 2%;
+  width: 46%;
+  float: left;
+  background: #cc8500 radial-gradient(circle at bottom, #ffa500, #946100);
+  overflow: hidden; }
+  div.card div.heater {
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left; }
+  div.card div.wanted {
+    margin-top: 5px;
+    margin-right: 5px;
+    float: right; }
+  div.card h2 {
+    margin: 0;
+    margin-bottom: -4px;
+    font: 140% normal;
+    text-align: center; }
+  div.card div.temp {
+    font: 80px normal;
+    text-align: center;
+    color: white;
+    opacity: 0.6; }
+    div.card div.temp small {
+      font: 50px normal; }
+
+/*# sourceMappingURL=style.css.map */
