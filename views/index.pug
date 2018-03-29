@@ -6,8 +6,8 @@ block content
   p Welcome to #{title}
 
   each room in rooms
-    div.card(id= 'roomcard-' + room.name)
-      div.heater= room.heater
-      div.wanted= room.wanted + '°'
-      div.temp!= Math.floor(room.temp).toString() + '.<small>' + (room.temp % 1).toFixed(1).substring(2) + '</small>'
+    .card(id= 'roomcard-' + room.name, class= 'temp-' + Math.floor(room.temp).toString())
+      .heater= room.hitsOn > 0 ? 'On' : 'Off'
+      .wanted= room.wanted + '°'
+      .temp!= Math.floor(room.temp).toString() + '.<small>' + (room.temp % 1).toFixed(1).substring(2) + '</small>'
       h2= room.name

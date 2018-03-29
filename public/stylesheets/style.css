@@ -10,30 +10,51 @@ h1, p {
   display: none; }
 
 div.card {
+  display: inline-block;
   margin: 2%;
-  width: 46%;
-  float: left;
-  background: #cc8500 radial-gradient(circle at bottom, #ffa500, #946100);
-  overflow: hidden; }
+  width: 46%; }
   div.card div.heater {
-    margin-top: 5px;
-    margin-left: 5px;
+    margin: 5px 0 0 5px;
     float: left; }
   div.card div.wanted {
-    margin-top: 5px;
-    margin-right: 5px;
-    float: right; }
+    margin: 5px 5px 0 0;
+    text-align: right; }
   div.card h2 {
-    margin: 0;
-    margin-bottom: -4px;
+    margin: 0 0 -4px 0;
     font: 140% normal;
     text-align: center; }
   div.card div.temp {
+    margin: -10px 0 -10px 0;
     font: 80px normal;
+    line-height: 80px;
     text-align: center;
     color: white;
     opacity: 0.6; }
     div.card div.temp small {
       font: 50px normal; }
+
+div.temp-4, div.temp-5, div.temp-6, div.temp-7, div.temp-8, div.temp-9, div.temp-10, div.temp-11 {
+  background: #0088cc radial-gradient(circle at bottom, #00aaff, #006394); }
+
+div.temp-12, div.temp-13 {
+  background: #00cccc radial-gradient(circle at bottom, #00ffff, #009494); }
+
+div.temp-14, div.temp-15 {
+  background: #44cc00 radial-gradient(circle at bottom, #55ff00, #319400); }
+
+div.temp-16, div.temp-17 {
+  background: #cc8500 radial-gradient(circle at bottom, #ffa500, #946100); }
+
+div.temp-18, div.temp-19 {
+  background: #cc6600 radial-gradient(circle at bottom, #ff8000, #944a00); }
+
+div.temp-20, div.temp-21 {
+  background: #cc4400 radial-gradient(circle at bottom, #ff5500, #943100); }
+
+div.temp-22, div.temp-23 {
+  background: #cc2200 radial-gradient(circle at bottom, #ff2b00, #941900); }
+
+div.temp-24, div.temp-25, div.temp-26, div.temp-27 {
+  background: #cc0000 radial-gradient(circle at bottom, #ff0000, #940000); }
 
 /*# sourceMappingURL=style.css.map */
