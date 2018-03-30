@@ -57,4 +57,7 @@ div.temp-22, div.temp-23 {
 div.temp-24, div.temp-25, div.temp-26, div.temp-27 {
   background: #cc0000 radial-gradient(circle at bottom, #ff0000, #940000); }
 
+div.temp-NaN {
+  background: #b2b1b3 radial-gradient(circle at bottom, #e3dae6, #949293); }
+
 /*# sourceMappingURL=style.css.map */

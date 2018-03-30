@@ -7,9 +7,9 @@
     "Bath":    {"name": "SdBain",     "temp": 24.3, "wanted": 21, "hitsOn": 0, "hitsOff": 1, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 },
     "Bed":     {"name": "Chambre",    "temp": 17.3, "wanted": 18, "hitsOn": 1, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 },
     "Upstairs":{"name": "Pallier",    "temp": 21.2, "wanted": 21, "hitsOn": 1, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 },
-    "Bath2":   {"name": "SdBain 1er", "temp": 12.3, "wanted": 20, "hitsOn": 1, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 },
-    "BedM":    {"name": "Ch. Matys",  "temp": 16.2, "wanted": 19, "hitsOn": 0, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 },
-    "BedL":    {"name": "Ch. Lili",   "temp": 10.0, "wanted": 19, "hitsOn": 1, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 }
+    "Bath2":   {"name": "SdBain 1er", "temp": "--", "wanted": 20, "hitsOn": 0, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 },
+    "BedM":    {"name": "Ch. Matys",  "temp": "--", "wanted": 19, "hitsOn": 0, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 },
+    "BedL":    {"name": "Ch. Lili",   "temp": "--", "wanted": 19, "hitsOn": 0, "hitsOff": 0, "lastMeasure": "2018-03-30T22:22:00Z", "HC": 0, "HP": 0 }
 
   }
 }

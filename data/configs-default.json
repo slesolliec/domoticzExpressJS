@@ -1,0 +1,8 @@
+{
+  "domoticz": "http://my.domoticz.url",
+  "username": "my_username",
+  "password": "my_password",
+  "GoogleSheetID": "ID_of_google_sheet_storing_consumption_records",
+  "GoogleTempSheetID": "ID_of_google_sheet_storing_temperature_directives"
+}
+
