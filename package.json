@@ -1,6 +1,6 @@
 {
-  "name": "domoticzexpress",
-  "version": "0.0.0",
+  "name": "domoticz-heaters-express",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
@@ -9,6 +9,7 @@
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "domoticz-heaters": "^1.1.1",
     "express": "~4.16.0",
     "fs": "0.0.1-security",
     "http-errors": "~1.6.2",

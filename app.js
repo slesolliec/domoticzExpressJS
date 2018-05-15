@@ -1,13 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var createError    = require('http-errors');
+var express        = require('express');
+var path           = require('path');
+var cookieParser   = require('cookie-parser');
+var logger         = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+// routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+// create app
 var app = express();
 
 // view engine setup
