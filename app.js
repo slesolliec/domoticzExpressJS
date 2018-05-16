@@ -4,6 +4,7 @@ var path           = require("path");
 var cookieParser   = require("cookie-parser");
 var logger         = require("morgan");
 var sassMiddleware = require("node-sass-middleware");
+var domo           = require("domoticz-heaters");
 
 // routers
 var indexRouter = require("./routes/index");
@@ -27,6 +28,9 @@ app.use(sassMiddleware({
 	sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, "public")));
+
+// pluging the domoticz module
+app.locals.domo = domo;
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
