@@ -31,30 +31,21 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // pluging the domoticz module
 app.locals.domoticz = domoticz;
-
-/*
-// load configs (put that file where it suits you)
-domoJS.loadConfigs( path.join(__dirname, "configs.json"));
-
-// get wanted temperatures from Google Sheet only once an hour
-if (new Date().getMinutes() === 0)
-    domoJS.getTempsFromGoogleSheet();
-
-// load house state (put that file where you want)
-domoJS.loadState( path.join(__dirname, "house_state.json"));
-
+app.locals.domoticz.loadConfigs(path.join(__dirname, "data/configs.json"));
+app.locals.domoticz.loadState(  path.join(__dirname, "data/house-state.json"));
+app.locals.domoticz.getTempsFromGoogleSheet();
 // load wanted temperatures from local Google Sheet "cache" file
-domoJS.loadWantedTemps( path.join(__dirname, "wantedTemps.json"));
+app.locals.domoticz.loadWantedTemps( path.join(__dirname, "data/wantedTemps.json"));
+
+// should be done @XX:00
+setInterval(app.locals.domoticz.getTempsFromGoogleSheet, 3600*1000);
+// should be done once an hour
+setInterval(app.locals.domoticz.uploadToGoogleSheet, 3600*1000);
 
 // we get the state of the switches of the heaters from Domoticz
 // then it fetches current temperatures
 // then it sends ON / OFF commands
-domoJS.updateSwitchesStatus();
-
-// update power consumption to Google Sheet once an hour
-if (new Date().getMinutes() === 58)
-	domoJS.uploadToGoogleSheet();
-*/
+setInterval(app.locals.domoticz.updateSwitchesStatus, 60*1000);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
