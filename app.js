@@ -4,7 +4,7 @@ var path           = require("path");
 var cookieParser   = require("cookie-parser");
 var logger         = require("morgan");
 var sassMiddleware = require("node-sass-middleware");
-var domo           = require("domoticz-heaters");
+var domoticz       = require("domoticz-heaters");
 
 // routers
 var indexRouter = require("./routes/index");
@@ -30,7 +30,31 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, "public")));
 
 // pluging the domoticz module
-app.locals.domo = domo;
+app.locals.domoticz = domoticz;
+
+/*
+// load configs (put that file where it suits you)
+domoJS.loadConfigs( path.join(__dirname, "configs.json"));
+
+// get wanted temperatures from Google Sheet only once an hour
+if (new Date().getMinutes() === 0)
+    domoJS.getTempsFromGoogleSheet();
+
+// load house state (put that file where you want)
+domoJS.loadState( path.join(__dirname, "house_state.json"));
+
+// load wanted temperatures from local Google Sheet "cache" file
+domoJS.loadWantedTemps( path.join(__dirname, "wantedTemps.json"));
+
+// we get the state of the switches of the heaters from Domoticz
+// then it fetches current temperatures
+// then it sends ON / OFF commands
+domoJS.updateSwitchesStatus();
+
+// update power consumption to Google Sheet once an hour
+if (new Date().getMinutes() === 58)
+	domoJS.uploadToGoogleSheet();
+*/
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
