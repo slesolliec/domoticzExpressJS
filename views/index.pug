@@ -5,10 +5,10 @@ block content
   h1= title
   p Welcome to #{title}
 
-  each room in rooms
-    .card(id= 'roomcard-' + room.name, class= 'temp-' + Math.floor(room.temp).toString())
+  each room,roomname in rooms
+    .card(id= 'roomcard-' + roomname, class= 'temp-' + Math.floor(room.temp).toString())
       .heater= room.hitsOn > 0 ? 'On' : 'Off'
-      .wanted= room.wanted + '°'
+      .wanted= room.wantedTemp + '°'
       if room.temp === '--'
         .temp --&nbsp;
       else
