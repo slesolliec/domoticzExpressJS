@@ -8,4 +8,11 @@ router.get("/", function(req, res, next) {
 
 });
 
+router.get("/getState", function(req, res, next) {
+
+	res.setHeader("Content-Type", "application/json");
+	res.send( JSON.stringify(req.app.locals.domoticz.state, null, "	") );
+
+});
+
 module.exports = router;
