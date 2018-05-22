@@ -23,10 +23,6 @@ function refreshState() {
 			;
 		});
 	});
-
-
-//     alert($("#roomcard-Kitchen .temp").html());
-
 }
 
 
@@ -36,4 +32,4 @@ function prettyTemp(temp) {
 }
 
 
-$( document ).ready(  setInterval(refreshState, 15000) );
+$( document ).ready(  setInterval(refreshState, 60 * 1000) );
