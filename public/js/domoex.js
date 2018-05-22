@@ -5,7 +5,19 @@ function refreshState() {
 		// we dispatch it on GUI
 		// console.log(state.rooms.Bed);
 		$.each( state.rooms, function(roomName,room) {
-			$("#roomcard-" + roomName + " .temp").html( prettyTemp(room.temp) );
+			$("#roomcard-" + roomName + " .temp")
+				// change temp
+				.html( prettyTemp(room.temp) )
+				// change card color
+				.parent()
+				.removeClass()
+				.addClass("card")
+				.addClass("temp-" + Math.floor(room.temp).toString())
+				// change wanted temp
+				.children(".wanted")
+				.text(room.wantedTemp + "°")
+				;
+
 		});
 	});
 
