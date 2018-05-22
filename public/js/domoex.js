@@ -16,8 +16,11 @@ function refreshState() {
 				// change wanted temp
 				.children(".wanted")
 				.text(room.wantedTemp + "°")
-				;
-
+				// change on/off state
+				.parent()
+				.children(".heater")
+				.text( room.hitsOn > 0 ? "On" : "Off" )
+			;
 		});
 	});
 
