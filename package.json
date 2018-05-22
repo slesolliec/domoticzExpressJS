@@ -1,11 +1,29 @@
 {
   "name": "domoticz-heaters-express",
   "version": "0.1.0",
-  "private": true,
+  "description": "Web interface to domoticz-heaters: the Domoticz heaters pilot Node.js module.",
   "scripts": {
     "start": "node ./bin/www",
     "deploy": "gcloud app deploy"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slesolliec/domoticzExpressJS.git"
+  },
+  "keywords": [
+    "Domoticz",
+    "smart house",
+    "energy",
+    "IoT",
+    "web interface",
+    "Express"
+  ],
+  "author": "Stéphane Le Solliec",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slesolliec/domoticzExpressJS/issues"
+  },
+  "homepage": "https://github.com/slesolliec/domoticzExpressJS#readme",
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
