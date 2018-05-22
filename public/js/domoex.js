@@ -3,7 +3,6 @@ function refreshState() {
 	// we get the new state
 	$.getJSON("/getState", function(state) {
 		// we dispatch it on GUI
-		// console.log(state.rooms.Bed);
 		$.each( state.rooms, function(roomName,room) {
 			$("#roomcard-" + roomName + " .temp")
 				// change temp
