@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>House state</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<script src="/js/jquery-3.3.1.js"></script>
+	<script src="/js/vue.js"></script>
+	<script src="/js/domoex.js"></script>
+</head>
+
+<body>
+	<h1>House state</h1>
+	<p>Welcome to House state</p>
+
+	<div id="roomlist">
+		<div v-for="room in  rooms" class="card temp-21" id="roomcard-Bed">
+			<div class="heater">Off</div>
+			<div class="wanted">15°</div>
+			<div class="temp">21<small>.1</small></div>
+			<h2>Chambre</h2>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: "#roomlist",
+			data: {
+				rooms: ["truc", "machin", "bidule"]
+			}
+		});
+	</script>
+	
+</body>
+
+</html>

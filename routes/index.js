@@ -3,9 +3,12 @@ var router  = express.Router();
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-
 	res.render("index", { title: "House state", rooms: req.app.locals.domoticz.state.rooms });
+});
 
+/* GET home page based on Vue.js. */
+router.get("/vue", function(req, res, next) {
+	res.render("index", { title: "House state", rooms: req.app.locals.domoticz.state.rooms });
 });
 
 router.get("/getState", function(req, res, next) {
