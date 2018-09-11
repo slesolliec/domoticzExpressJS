@@ -17,9 +17,9 @@
 	<div id="roomlist">
 		<div v-for="room in  rooms" class="card temp-21" id="roomcard-Bed">
 			<div class="heater">Off</div>
-			<div class="wanted">15°</div>
-			<div class="temp">21<small>.1</small></div>
-			<h2>Chambre</h2>
+			<div class="wanted">{{ room.wantedTemp }}°</div>
+			<div class="temp">{{ room.temp }}</div>
+			<h2>{{ room.name }}</h2>
 		</div>
 	</div>
 
@@ -27,9 +27,15 @@
 		var app = new Vue({
 			el: "#roomlist",
 			data: {
-				rooms: ["truc", "machin", "bidule"]
+				rooms: []
 			}
 		});
+
+		getRooms();
+
+		function getRooms() {
+			jQuery.get('/getState',function(data) { app.rooms = data.rooms; },"json");
+		}
 	</script>
 	
 </body>
