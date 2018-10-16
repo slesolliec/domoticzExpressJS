@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">
 	<script src="/js/jquery-3.3.1.js"></script>
 	<script src="/js/vue.js"></script>
-	<script src="/js/domoex.js"></script>
 </head>
 
 <body>
@@ -18,7 +17,7 @@
 		<div v-for="room in  rooms" v-bind:class="['card', 'temp-' + Math.floor(room.temp)]" id="roomcard-Bed">
 			<div v-bind:class="[room.state == 'Off' ? 'off' : '', 'heater']">{{ room.state }}</div>
 			<div class="wanted">{{ room.wantedTemp }}°</div>
-			<div class="temp">{{ room.temp }}</div>
+			<div class="temp"> {{ room.temp | mathFloor }}.<small>{{ room.temp | decimal1 }}</small></div>
 			<h2>{{ room.name }}</h2>
 		</div>
 	</div>
@@ -28,14 +27,20 @@
 			el: "#roomlist",
 			data: {
 				rooms: []
+			},
+			filters: {
+				mathFloor: function (temp) { return Math.floor(temp).toString() },
+				decimal1:  function (temp) { return (temp % 1).toFixed(1).substring(2) }
 			}
 		});
-
-		getRooms();
 
 		function getRooms() {
 			jQuery.get('/getState',function(data) { app.rooms = data.rooms; },"json");
 		}
+
+		getRooms();
+		setInterval(getRooms, 60 * 1000);
+
 	</script>
 	
 </body>
