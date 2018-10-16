@@ -15,8 +15,8 @@
 	<p>Welcome to House state</p>
 
 	<div id="roomlist">
-		<div v-for="room in  rooms" class="card temp-21" id="roomcard-Bed">
-			<div class="heater">Off</div>
+		<div v-for="room in  rooms" v-bind:class="['card', 'temp-' + Math.floor(room.temp)]" id="roomcard-Bed">
+			<div v-bind:class="[room.state == 'Off' ? 'off' : '', 'heater']">{{ room.state }}</div>
 			<div class="wanted">{{ room.wantedTemp }}°</div>
 			<div class="temp">{{ room.temp }}</div>
 			<h2>{{ room.name }}</h2>
