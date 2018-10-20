@@ -8,7 +8,6 @@ var domoticz       = require("domoticz-heaters");
 
 // routers
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 
 // create app
 var app = express();
