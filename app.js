@@ -48,7 +48,6 @@ setInterval(app.locals.domoticz.uploadToGoogleSheet, 3600*1000);
 setInterval(app.locals.domoticz.updateSwitchesStatus, 60*1000);
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

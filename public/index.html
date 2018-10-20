@@ -15,7 +15,7 @@
 
 	<div id="roomlist">
 		<div v-for="room in  rooms" v-bind:class="['card', 'temp-' + Math.floor(room.temp)]" id="roomcard-Bed">
-			<div v-bind:class="[room.state == 'Off' ? 'off' : '', 'heater']">{{ room.state }}</div>
+			<div v-bind:class="[room.hitsOn > 0 ? '' : 'off', 'heater']">{{ room.hitsOn > 0 ? 'On' : 'Off' }}</div>
 			<div class="wanted">{{ room.wantedTemp ? room.wantedTemp + '°' : '&nbsp;' }}</div>
 			<div class="temp"> {{ room.temp | mathFloor }}.<small>{{ room.temp | decimal1 }}</small></div>
 			<h2>{{ room.name }}</h2>
