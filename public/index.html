@@ -14,12 +14,70 @@
 	<p>Welcome to House state</p>
 
 	<div id="roomlist">
-		<div v-for="room in  rooms" v-bind:class="['card', 'temp-' + Math.floor(room.temp)]" id="roomcard-Bed">
-			<div v-bind:class="[room.hitsOn > 0 ? '' : 'off', 'heater']">{{ room.hitsOn > 0 ? 'On' : 'Off' }}</div>
-			<div class="wanted">{{ room.wantedTemp ? room.wantedTemp + '°' : '&nbsp;' }}</div>
-			<div class="temp"> {{ room.temp | mathFloor }}.<small>{{ room.temp | decimal1 }}</small></div>
+		<div v-for="(room, name) in  rooms"
+			 v-bind:class="['card', 'temp-' + Math.floor(room.temp)]"
+			 v-bind:key="room.idx"
+			 v-bind:id="'room-' + name" >
+			<div v-bind:class="[room.nbHitsOn > 0 ? '' : 'off', 'heater']">
+				{{ room.nbHitsOn > 0 ? 'On' : 'Off' }}
+			</div>
+			<div class="wanted" v-on:click="modifyWanted(name)">
+				{{ room.wantedTemp ? room.wantedTemp + '°' : '&nbsp;' }}
+			</div>
+			<div class="temp">
+				{{ room.temp | mathFloor }}.<small>{{ room.temp | decimal1 }}</small>
+			</div>
 			<h2>{{ room.name }}</h2>
 		</div>
+	</div>
+
+	<div id="tempModifier">
+		<table>
+			<thead>
+				<tr>
+					<th>1 h.</th>
+					<th>2 h.</th>
+					<th>3 h.</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="">+3°</a></td>
+					<td><a href="">+3°</a></td>
+					<td><a href="">+3°</a></td>
+				</tr>
+				<tr>
+					<td><a href="">+2°</a></td>
+					<td><a href="">+2°</a></td>
+					<td><a href="">+2°</a></td>
+				</tr>
+				<tr>
+					<td><a href="">+1°</a></td>
+					<td><a href="">+1°</a></td>
+					<td><a href="">+1°</a></td>
+				</tr>
+				<tr>
+					<td><a href="">+0°</a></td>
+					<td><a href="">+0°</a></td>
+					<td><a href="">+0°</a></td>
+				</tr>
+				<tr>
+					<td><a href="">-1°</a></td>
+					<td><a href="">-1°</a></td>
+					<td><a href="">-1°</a></td>
+				</tr>
+				<tr>
+					<td><a href="">-2°</a></td>
+					<td><a href="">-2°</a></td>
+					<td><a href="">-2°</a></td>
+				</tr>
+				<tr>
+					<td><a href="">-3°</a></td>
+					<td><a href="">-3°</a></td>
+					<td><a href="">-3°</a></td>
+				</tr>								
+			</tbody>
+		</table>
 	</div>
 
 	<script type="text/javascript">
@@ -31,6 +89,11 @@
 			filters: {
 				mathFloor: function (temp) { return Math.floor(temp).toString() },
 				decimal1:  function (temp) { return (temp % 1).toFixed(1).substring(2) }
+			},
+			methods: {
+				modifyWanted: function (name) {
+					alert('clicked ' + name);
+				}
 			}
 		});
 
@@ -39,7 +102,7 @@
 		}
 
 		getRooms();
-		setInterval(getRooms, 60 * 1000);
+		setInterval(getRooms, 20 * 1000);
 
 	</script>
 	
