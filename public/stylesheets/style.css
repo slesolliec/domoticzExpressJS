@@ -1,7 +1,9 @@
 body {
   padding: 5px;
-  background: #333;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  background: #333 url(/images/house.jpg) top center;
+  background-size: 120% auto;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 150px; }
 
 a {
   color: #00B7FF; }
@@ -12,55 +14,109 @@ h1, p {
 div.card {
   display: inline-block;
   margin: 2%;
-  width: 46%; }
+  width: 46%;
+  opacity: 0.8;
+  color: white; }
   div.card div.heater {
     margin: 5px 0 0 5px;
     float: left; }
+  div.card div.off {
+    opacity: .3; }
   div.card div.wanted {
     margin: 5px 5px 0 0;
-    text-align: right; }
+    float: right;
+    cursor: pointer; }
   div.card h2 {
-    margin: 0 0 -3px 0;
-    font: 140% normal;
+    margin: 0 0 0 0;
+    font: 120% normal;
     text-align: center; }
   div.card div.temp {
-    margin: -10px 0 -10px 0;
-    font: 80px normal;
-    line-height: 80px;
+    clear: both;
+    margin: 0 20px -10px 20px;
+    font: 60px normal;
+    line-height: 60px;
     text-align: center;
     color: white;
-    opacity: 0.7; }
+    opacity: 1; }
     div.card div.temp small {
       font: 50px normal; }
 
 div.temp-4, div.temp-5, div.temp-6, div.temp-7, div.temp-8, div.temp-9, div.temp-10, div.temp-11 {
-  background: #0088cc radial-gradient(circle at bottom, #00aaff, #006394); }
+  background: #000;
+  border-bottom: 5px solid #00AAFF; }
 
 div.temp-12, div.temp-13 {
-  background: #00cccc radial-gradient(circle at bottom, #00ffff, #009494); }
+  background: #000;
+  border-bottom: 5px solid #00FFFF; }
 
 div.temp-14, div.temp-15 {
-  background: #44cc00 radial-gradient(circle at bottom, #55ff00, #319400); }
+  background: #000;
+  border-bottom: 5px solid #55FF00; }
 
 div.temp-16, div.temp-17 {
-  background: #cc8500 radial-gradient(circle at bottom, #ffa500, #946100); }
+  background: #000;
+  border-bottom: 5px solid #FFA500; }
 
 div.temp-18, div.temp-19 {
-  background: #cc6600 radial-gradient(circle at bottom, #ff8000, #944a00); }
+  background: #000;
+  border-bottom: 5px solid #FF8000; }
 
 div.temp-20, div.temp-21 {
-  background: #cc4400 radial-gradient(circle at bottom, #ff5500, #943100); }
+  background: #000;
+  border-bottom: 5px solid #FF5500; }
 
 div.temp-22, div.temp-23 {
-  background: #cc2200 radial-gradient(circle at bottom, #ff2b00, #941900); }
+  background: #000;
+  border-bottom: 5px solid #FF2B00; }
 
 div.temp-24, div.temp-25, div.temp-26, div.temp-27 {
-  background: #cc0000 radial-gradient(circle at bottom, #ff0000, #940000); }
+  background: #000;
+  border-bottom: 5px solid #FF0000; }
 
 div.temp-28, div.temp-29, div.temp-30, div.temp-31, div.temp-32, div.temp-33, div.temp-34, div.temp-35 {
-  background: #990000 radial-gradient(circle at bottom, #CC0000, #840000); }
+  background: #000;
+  border-bottom: 5px solid #CC0000; }
 
 div.temp-NaN {
   background: #b2b1b3 radial-gradient(circle at bottom, #e3dae6, #949293); }
 
-/*# sourceMappingURL=style.css.map */
+#tempModifier {
+  z-index: 10;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 40px; }
+  #tempModifier table {
+    margin: 5vh auto 0 auto;
+    width: 80%;
+    border-spacing: 20px; }
+  #tempModifier th {
+    background: #999;
+    padding: 1vh;
+    border: 3px solid #444; }
+  #tempModifier tr:nth-child(1) td a {
+    color: red; }
+  #tempModifier tr:nth-child(2) td a {
+    color: orange; }
+  #tempModifier tr:nth-child(3) td a {
+    color: yellow; }
+  #tempModifier tr:nth-child(4) td a {
+    color: green; }
+  #tempModifier tr:nth-child(5) td a {
+    color: cyan; }
+  #tempModifier tr:nth-child(6) td a {
+    color: blue; }
+  #tempModifier tr:nth-child(7) td a {
+    color: purple; }
+  #tempModifier td {
+    width: 30%;
+    padding: 2vh;
+    text-align: center;
+    background: black;
+    border: 3px solid #444; }
+    #tempModifier td a {
+      text-decoration: none; }
