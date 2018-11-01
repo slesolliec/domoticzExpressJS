@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Web interface to domoticz-heaters: the Domoticz heaters pilot Node.js module.",
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "PORT=3081 node ./bin/www",
     "deploy": "gcloud app deploy"
   },
   "repository": {
