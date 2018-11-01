@@ -22,7 +22,25 @@
 				{{ room.nbHitsOn > 0 ? 'On' : 'Off' }}
 			</div>
 			<div class="wanted" v-on:click="modifyWanted(name)">
-				{{ room.wantedTemp ? room.wantedTemp + '°' : '&nbsp;' }}
+				<span v-if="room.wantedTemp">
+					<span v-if="room.tempModifier && new Date(room.tempModifierUntil) > new Date()">
+						<span v-if="room.tempModifier > 0">
+							(+{{ room.tempModifier }}°
+								until {{ room.tempModifierUntil | dateToCETHHhMM }})
+						</span>
+						<span v-else>
+							({{ room.tempModifier }}°
+								until {{ room.tempModifierUntil | dateToCETHHhMM }})
+						</span>
+							{{ room.wantedTemp + room.tempModifier }}°
+					</span>
+					<span v-else>
+							{{ room.wantedTemp }}°
+					</span>
+				</span>
+				<span v-else>
+					$nbsp;
+				</span>
 			</div>
 			<div class="temp">
 				{{ room.temp | mathFloor }}.<small>{{ room.temp | decimal1 }}</small>
@@ -41,46 +59,46 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td><a href="">+3°</a></td>
-					<td><a href="">+3°</a></td>
-					<td><a href="">+3°</a></td>
+				<tr class="plus3">
+					<td><a href="" onclick="return setModifyWanted(3, 1);">+3°</a></td>
+					<td><a href="" onclick="return setModifyWanted(3, 2);">+3°</a></td>
+					<td><a href="" onclick="return setModifyWanted(3, 3);">+3°</a></td>
 				</tr>
 				<tr>
-					<td><a href="">+2°</a></td>
-					<td><a href="">+2°</a></td>
-					<td><a href="">+2°</a></td>
+					<td><a href="" onclick="return setModifyWanted(2, 1);">+2°</a></td>
+					<td><a href="" onclick="return setModifyWanted(2, 2);">+2°</a></td>
+					<td><a href="" onclick="return setModifyWanted(2, 3);">+2°</a></td>
 				</tr>
 				<tr>
-					<td><a href="">+1°</a></td>
-					<td><a href="">+1°</a></td>
-					<td><a href="">+1°</a></td>
+					<td><a href="" onclick="return setModifyWanted(1, 1);">+1°</a></td>
+					<td><a href="" onclick="return setModifyWanted(1, 2);">+1°</a></td>
+					<td><a href="" onclick="return setModifyWanted(1, 3);">+1°</a></td>
 				</tr>
 				<tr>
-					<td><a href="">+0°</a></td>
-					<td><a href="">+0°</a></td>
-					<td><a href="">+0°</a></td>
+					<td colspan="3"><a href="" onclick="return setModifyWanted(0, 0);">+0°</a></td>
 				</tr>
 				<tr>
-					<td><a href="">-1°</a></td>
-					<td><a href="">-1°</a></td>
-					<td><a href="">-1°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-1, 1);">-1°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-1, 2);">-1°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-1, 3);">-1°</a></td>
 				</tr>
 				<tr>
-					<td><a href="">-2°</a></td>
-					<td><a href="">-2°</a></td>
-					<td><a href="">-2°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-2, 1);">-2°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-2, 2);">-2°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-2, 3);">-2°</a></td>
 				</tr>
 				<tr>
-					<td><a href="">-3°</a></td>
-					<td><a href="">-3°</a></td>
-					<td><a href="">-3°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-3, 1);">-3°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-3, 2);">-3°</a></td>
+					<td><a href="" onclick="return setModifyWanted(-3, 3);">-3°</a></td>
 				</tr>								
 			</tbody>
 		</table>
 	</div>
 
 	<script type="text/javascript">
+		var tempModifiedRoom = '';
+
 		var app = new Vue({
 			el: "#roomlist",
 			data: {
@@ -88,17 +106,46 @@
 			},
 			filters: {
 				mathFloor: function (temp) { return Math.floor(temp).toString() },
-				decimal1:  function (temp) { return (temp % 1).toFixed(1).substring(2) }
+				decimal1:  function (temp) { return (temp % 1).toFixed(1).substring(2) },
+				dateToCETHHhMM: function (date) {
+					function addZero(x) {
+						while (x.toString().length < 2) {
+							x = "0" + x;
+						}
+						return x;
+					}
+
+					if (typeof(date) == 'string') {
+						date = new Date(date);
+					}
+					return date.getHours() + 'h' + addZero(date.getMinutes());
+				}
 			},
 			methods: {
 				modifyWanted: function (name) {
-					alert('clicked ' + name);
+					tempModifiedRoom = name;
+					jQuery('#tempModifier').css('display', 'block');
 				}
 			}
 		});
 
 		function getRooms() {
 			jQuery.get('/getState',function(data) { app.rooms = data.rooms; },"json");
+		}
+
+		function setModifyWanted (temp, hours) {
+				jQuery.get(
+					'/setTempModifier',
+					{
+						tempModifier: temp,
+						duration: hours,
+						room: tempModifiedRoom
+					},
+					function(data) { app.rooms = data.rooms; },
+					"json"
+				);
+			jQuery('#tempModifier').css('display', 'none');
+			return false;
 		}
 
 		getRooms();
