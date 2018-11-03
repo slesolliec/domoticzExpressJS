@@ -24,4 +24,10 @@ router.get('/setTempModifier', function(req, res, next) {
 	res.send( JSON.stringify(req.app.locals.domoticz.state, null, "	") );
 });
 
+router.get('/reloadGoogleSheet', function(req, res, next) {
+	console.log("reloading Google Sheet");
+	req.app.locals.domoticz.getTempsFromGoogleSheet();
+	res.send('ok');
+});
+
 module.exports = router;

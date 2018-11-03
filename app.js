@@ -26,8 +26,6 @@ app.locals.domoticz = domoticz;
 app.locals.domoticz.loadConfigs(path.join(__dirname, "data/configs.json"));
 app.locals.domoticz.loadState(  path.join(__dirname, "data/house-state.json"));
 app.locals.domoticz.getTempsFromGoogleSheet();
-// load wanted temperatures from local Google Sheet "cache" file
-app.locals.domoticz.loadWantedTemps( path.join(__dirname, "data/wantedTemps.json"));
 
 // should be done @XX:00
 setInterval(app.locals.domoticz.getTempsFromGoogleSheet, 3600*1000);
