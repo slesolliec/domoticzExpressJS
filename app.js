@@ -5,6 +5,9 @@ var cookieParser   = require("cookie-parser");
 var logger         = require("morgan");
 var domoticz       = require("domoticz-heaters");
 
+// ugly
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 // routers
 var indexRouter = require("./routes/index");
 
@@ -30,12 +33,40 @@ app.locals.domoticz.getTempsFromGoogleSheet();
 // should be done @XX:00
 setInterval(app.locals.domoticz.getTempsFromGoogleSheet, 3600*1000);
 // should be done once an hour
-setInterval(app.locals.domoticz.uploadToGoogleSheet, 3600*1000);
+// setInterval(app.locals.domoticz.uploadToGoogleSheet, 3600*1000);
 
 // we get the state of the switches of the heaters from Domoticz
 // then it fetches current temperatures
 // then it sends ON / OFF commands
-setInterval(app.locals.domoticz.updateSwitchesStatus, 60*1000);
+async function work() {
+
+	// get wanted temperatures from Google Sheet only once an hour
+	// (but the first time you run that script, comment off the if)
+	if (new Date().getMinutes() === 0)
+		await app.locals.domoticz.getTempsFromGoogleSheet();
+
+	// change the state with current wanted temperatures
+	await app.locals.domoticz.updateWantedTemps();
+
+	// we load the temperatures from Domoticz
+	await app.locals.domoticz.loadTemperaturesFromDomoticz();
+
+	// from now, we have loaded the current state
+	// + updated the wanted temperatures as the time goes by
+	// + read the current temperatures from domotics
+
+	await app.locals.domoticz.updateSwitches();
+
+	await app.locals.domoticz.writeState(path.join(__dirname, "house_state.json"));
+
+	console.log('-----');
+
+//	console.log(domoJS.state.rooms.Bed);
+//	console.log(domoJS.state.rooms.Bath2);
+//	process.exit(1);
+}
+
+setInterval(work, 60 * 1000);
 
 app.use("/", indexRouter);
 
