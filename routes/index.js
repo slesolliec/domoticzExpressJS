@@ -18,7 +18,7 @@ router.get('/setTempModifier', function(req, res, next) {
 	var now = new Date();
 	now.setMinutes(now.getMinutes() + req.query.duration * 60);
 	req.app.locals.domoticz.state.rooms[req.query.room].tempModifierUntil = now;
-	console.log(req.app.locals.domoticz.state);
+	// console.log(req.app.locals.domoticz.state);
 
 	res.setHeader("Content-Type", "application/json");
 	res.send( JSON.stringify(req.app.locals.domoticz.state, null, "	") );
