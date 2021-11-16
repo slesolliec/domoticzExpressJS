@@ -27,7 +27,7 @@
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "domoticz-heaters": "^1.5.7",
+    "domoticz-heaters": "^1.5.8",
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "http-errors": "~1.6.2",
