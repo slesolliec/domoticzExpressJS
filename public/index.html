@@ -14,6 +14,13 @@
 	<p>Welcome to House state</p>
 
 	<div id="roomlist">
+
+		<div id="topbar">
+			<a :href="googleTempSheetUrl">Programmation</a>
+			<a href="/reloadGoogleSheet">Reload Google Sheet</a>
+			<a :href="domoticzUrl">Domoticz</a>
+		</div>
+
 		<div v-for="(room, name) in  rooms"
 			 v-bind:class="['card', 'temp-' + Math.floor(room.temp)]"
 			 v-bind:key="room.idx"
@@ -112,7 +119,9 @@
 		var app = new Vue({
 			el: "#roomlist",
 			data: {
-				rooms: []
+				rooms: [],
+				googleTempSheetUrl: '',
+				domoticzUrl: ''
 			},
 			filters: {
 				mathFloor: function (temp) { return Math.floor(temp).toString() },
@@ -140,7 +149,12 @@
 		});
 
 		function getRooms() {
-			jQuery.get('/getState',function(data) { app.rooms = data.rooms; },"json");
+			jQuery.get('/getState',function(data) {
+				console.log(data);
+				app.rooms = data.rooms;
+				app.googleTempSheetUrl = data.googleTempSheetUrl;
+				app.domoticzUrl = data.domoticzUrl;
+			},"json");
 		}
 
 		function setModifyWanted (temp, hours) {

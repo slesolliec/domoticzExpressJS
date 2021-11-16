@@ -14,6 +14,22 @@ h1, p {
   display: none;
 }
 
+#topbar {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  padding: 8px 50px;
+  background: black;
+  opacity: 0.8;
+  color: white;
+}
+
+#topbar a {
+  display: inline-block;
+  color: white;
+  margin-right: 40px;
+}
+
 div.card {
   display: inline-block;
   margin: 2%;

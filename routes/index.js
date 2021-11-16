@@ -9,7 +9,18 @@ router.get("/", function(req, res, next) {
 
 router.get("/getState", function(req, res, next) {
 	res.setHeader("Content-Type", "application/json");
-	res.send( JSON.stringify(req.app.locals.domoticz.state, null, "	") );
+	let tosend = req.app.locals.domoticz.state;
+//	console.log(req.app.locals.domoticz);
+	tosend.googleTempSheetUrl = 'https://docs.google.com/spreadsheets/d/' + req.app.locals.domoticz.configs.GoogleTempSheetID;
+
+	console.log(tosend.googleTempSheetUrl);
+	
+	let domoUrl = req.app.locals.domoticz.configs.domoticz;
+	domoBits = domoUrl.split('@');
+	domoUrl = domoBits[0].split('//')[0] + '//' + domoBits[1];
+	tosend.domoticzUrl = domoUrl;
+
+	res.send( JSON.stringify(tosend, null, "	") );
 });
 
 router.get('/setTempModifier', function(req, res, next) {
