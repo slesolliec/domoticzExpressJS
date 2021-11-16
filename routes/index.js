@@ -9,12 +9,10 @@ router.get("/", function(req, res, next) {
 
 router.get("/getState", function(req, res, next) {
 	res.setHeader("Content-Type", "application/json");
+
 	let tosend = req.app.locals.domoticz.state;
-//	console.log(req.app.locals.domoticz);
 	tosend.googleTempSheetUrl = 'https://docs.google.com/spreadsheets/d/' + req.app.locals.domoticz.configs.GoogleTempSheetID;
 
-	console.log(tosend.googleTempSheetUrl);
-	
 	let domoUrl = req.app.locals.domoticz.configs.domoticz;
 	domoBits = domoUrl.split('@');
 	domoUrl = domoBits[0].split('//')[0] + '//' + domoBits[1];

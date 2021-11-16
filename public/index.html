@@ -19,6 +19,7 @@
 			<a :href="googleTempSheetUrl">Programmation</a>
 			<a href="/reloadGoogleSheet">Reload Google Sheet</a>
 			<a :href="domoticzUrl">Domoticz</a>
+			<strong>{{power | spaceThousand}} W</strong>
 		</div>
 
 		<div v-for="(room, name) in  rooms"
@@ -121,11 +122,18 @@
 			data: {
 				rooms: [],
 				googleTempSheetUrl: '',
-				domoticzUrl: ''
+				domoticzUrl: '',
+				power: 0
 			},
 			filters: {
 				mathFloor: function (temp) { return Math.floor(temp).toString() },
 				decimal1:  function (temp) { return (temp % 1).toFixed(1).substring(2) },
+				spaceThousand: function (tempInt) {
+					if (tempInt < 1000)	return tempInt;
+
+					let pow = tempInt.toString();
+					return pow.slice(0, -3) + ' ' + pow.slice(-3)
+				},
 				dateToCETHHhMM: function (date) {
 					function addZero(x) {
 						while (x.toString().length < 2) {
@@ -150,10 +158,15 @@
 
 		function getRooms() {
 			jQuery.get('/getState',function(data) {
-				console.log(data);
+				// console.log(data);
 				app.rooms = data.rooms;
 				app.googleTempSheetUrl = data.googleTempSheetUrl;
 				app.domoticzUrl = data.domoticzUrl;
+
+				app.power = 0;
+				for (const roomName in app.rooms) {
+					app.power += app.rooms[roomName].power;
+				}
 			},"json");
 		}
 
